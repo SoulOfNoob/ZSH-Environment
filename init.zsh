@@ -20,10 +20,10 @@ printf "${YELLOW}Setup SSH folder and config${NC}\n"
 mkdir -p $HOME/.ssh
 cp ./platform_specific/$INSTALL_ENV/ssh_config $HOME/.ssh/config
 
-# printf "${YELLOW}Generating EdDSA key${NC}\n"
-# ssh-keygen -t ed25519 -f $HOME/.ssh/id_eddsa_private
-# printf "${YELLOW}Generating RSA key${NC}\n"
-# ssh-keygen -t rsa -b 4096 -f $HOME/.ssh/id_rsa_private
+printf "${YELLOW}Generating EdDSA key${NC}\n"
+ssh-keygen -t ed25519 -f $HOME/.ssh/id_eddsa_private
+printf "${YELLOW}Generating RSA key${NC}\n"
+ssh-keygen -t rsa -b 4096 -f $HOME/.ssh/id_rsa_private
 
 # Install Oh-My-ZSH
 printf "${YELLOW}Install oh-my-zsh${NC}\n"
