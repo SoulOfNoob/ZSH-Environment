@@ -17,23 +17,23 @@ INSTALL_ENV='default'
 
 # Init SSH
 printf "${YELLOW}Setup SSH folder and config${NC}\n"
-mkdir -p ~/.ssh
-cp ./platform_specific/$INSTALL_ENV/ssh_config ~/.ssh/config
+mkdir -p $HOME/.ssh
+cp ./platform_specific/$INSTALL_ENV/ssh_config $HOME/.ssh/config
 
 # printf "${YELLOW}Generating EdDSA key${NC}\n"
-# ssh-keygen -t ed25519 -f ~/.ssh/id_eddsa_private
+# ssh-keygen -t ed25519 -f $HOME/.ssh/id_eddsa_private
 # printf "${YELLOW}Generating RSA key${NC}\n"
-# ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa_private
+# ssh-keygen -t rsa -b 4096 -f $HOME/.ssh/id_rsa_private
 
 # Install Oh-My-ZSH
 printf "${YELLOW}Install oh-my-zsh${NC}\n"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 # Install autocomplete
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 # Install autosuggestions
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 # Install p10k
 printf "${YELLOW}Install p10k${NC}\n"
@@ -50,9 +50,9 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 # Copy rc files
 printf "${YELLOW}Copying rc files${NC}\n"
 
-cp ./platform_specific/$INSTALL_ENV/.zshrc ~/
-cp ./platform_specific/$INSTALL_ENV/.p10k.zsh ~/
-# cp ./platform_specific/$INSTALL_ENV/.nanorc ~/
+cp ./platform_specific/$INSTALL_ENV/.zshrc $HOME/
+cp ./platform_specific/$INSTALL_ENV/.p10k.zsh $HOME/
+# cp ./platform_specific/$INSTALL_ENV/.nanorc $HOME/
 
 # Copy custom scripts
 printf "${YELLOW}Copy Custom Scripts${NC}\n"
