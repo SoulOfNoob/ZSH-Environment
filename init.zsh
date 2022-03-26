@@ -4,7 +4,7 @@ BLUE='\033[0;34m'
 YELLOW='\033[0;33m'
 NC='\033[0m' # No Color
 
-INSTALL_ENV='linux'
+INSTALL_ENV='default'
 
 # requirements
 # 	git
@@ -18,12 +18,12 @@ INSTALL_ENV='linux'
 # Init SSH
 printf "${YELLOW}Setup SSH folder and config${NC}\n"
 mkdir -p ~/.ssh
-cp ./ssh/config ~/.ssh/
+cp ./platform_specific/$INSTALL_ENV/ssh_config ~/.ssh/config
 
-printf "${YELLOW}Generating EdDSA key${NC}\n"
-ssh-keygen -t ed25519 -f ~/.ssh/id_eddsa_private
-printf "${YELLOW}Generating RSA key${NC}\n"
-ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa_private
+# printf "${YELLOW}Generating EdDSA key${NC}\n"
+# ssh-keygen -t ed25519 -f ~/.ssh/id_eddsa_private
+# printf "${YELLOW}Generating RSA key${NC}\n"
+# ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa_private
 
 # Install Oh-My-ZSH
 printf "${YELLOW}Install oh-my-zsh${NC}\n"
@@ -49,13 +49,14 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 
 # Copy rc files
 printf "${YELLOW}Copying rc files${NC}\n"
-cp ./rc_files/$INSTALL_ENV/.zshrc ~/
-cp ./rc_files/$INSTALL_ENV/.p10k.zsh ~/
-# cp ./rc_files/$INSTALL_ENV/.nanorc ~/
+
+cp ./platform_specific/$INSTALL_ENV/.zshrc ~/
+cp ./platform_specific/$INSTALL_ENV/.p10k.zsh ~/
+# cp ./platform_specific/$INSTALL_ENV/.nanorc ~/
 
 # Copy custom scripts
 printf "${YELLOW}Copy Custom Scripts${NC}\n"
-cp ./custom/* ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/
+cp ./custom_scripts/* ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/
 
 # Make ZSH default
 printf "${YELLOW}Make ZSH default shell${NC}\n"

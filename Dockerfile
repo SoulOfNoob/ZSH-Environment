@@ -11,6 +11,7 @@ RUN apk update && \
 RUN mkdir /testing
 COPY ./ /root/
 WORKDIR /root/
-# ENTRYPOINT ["tail -f /dev/null"]
+CMD ["init.zsh"]
+ENTRYPOINT ["/bin/sh"]
 
 # sudo docker build -t testing/alpine:latest . && sudo docker run -it --entrypoint sh testing/alpine:latest
