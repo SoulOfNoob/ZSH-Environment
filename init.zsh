@@ -4,7 +4,7 @@ BLUE='\033[0;34m'
 YELLOW='\033[0;33m'
 NC='\033[0m' # No Color
 
-INSTALL_ENV='default'
+INSTALL_ENV='remote'
 
 # requirements
 # 	git
@@ -18,6 +18,7 @@ INSTALL_ENV='default'
 # Init SSH
 printf "${YELLOW}Setup SSH folder and config${NC}\n"
 mkdir -p $HOME/.ssh
+cp ./platform_specific/default/ssh_config $HOME/.ssh/config
 cp ./platform_specific/$INSTALL_ENV/ssh_config $HOME/.ssh/config
 
 printf "${YELLOW}Generating EdDSA key${NC}\n"
@@ -48,11 +49,13 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 # realpath "$0" | sed 's|\(.*\)/.*|\1|'
 
 # Copy rc files
-printf "${YELLOW}Copying rc files${NC}\n"
+printf "${YELLOW}Copying default files${NC}\n"
+cp ./platform_specific/default/.zshrc $HOME/
+cp ./platform_specific/default/.p10k.zsh $HOME/
 
+printf "${YELLOW}Copying override files${NC}\n"
 cp ./platform_specific/$INSTALL_ENV/.zshrc $HOME/
 cp ./platform_specific/$INSTALL_ENV/.p10k.zsh $HOME/
-# cp ./platform_specific/$INSTALL_ENV/.nanorc $HOME/
 
 # Copy custom scripts
 printf "${YELLOW}Copy Custom Scripts${NC}\n"

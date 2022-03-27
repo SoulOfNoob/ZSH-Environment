@@ -6,7 +6,8 @@ RUN apk update && \
       git \
       zsh \
       curl \
-      openssh-client
+      openssh-client \
+      shadow
 
 RUN mkdir /testing
 COPY ./ /root/
