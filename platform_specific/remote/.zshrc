@@ -75,10 +75,7 @@ plugins=(
   git
   node
   npm
-  git-flow
-  docker
   github
-  vscode
   yarn
   ssh-agent
   zsh-syntax-highlighting
