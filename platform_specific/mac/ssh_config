@@ -1,0 +1,32 @@
+# lots of aliases from git repo
+
+Host git.fanactivator.com
+  HostName git.fanactivator.com
+  IdentityFile ~/.ssh/id_ed25519_facelift
+  IdentitiesOnly yes
+  IgnoreUnknown UseKeychain
+  AddKeysToAgent yes
+
+Host mgmt az-* aks-* fa-* 192.168.236.*
+#  ControlMaster auto
+#  ControlPath   ~/.ssh/tmp/%h_%p_%r
+  ServerAliveInterval 240
+  ForwardAgent yes
+  Port 22
+  IgnoreUnknown UseKeychain
+  UseKeychain yes
+  AddKeysToAgent yes
+  IdentitiesOnly yes
+  IdentityFile ~/.ssh/id_rsa_facelift
+
+Host github.com
+  HostName github.com
+  IdentityFile ~/.ssh/id_ed25519_private
+
+Host *
+  ForwardAgent yes
+  IgnoreUnknown UseKeychain
+  UseKeychain yes
+  AddKeysToAgent yes
+  IdentitiesOnly yes
+  IdentityFile ~/.ssh/id_rsa_private

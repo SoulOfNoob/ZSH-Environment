@@ -12,3 +12,6 @@ export HOMEBREW_CORE_GIT_REMOTE="..."  # put your Git mirror of Homebrew/homebre
 
 # Install zsh
 brew install zsh
+
+brew install nano
+echo 'include "/usr/local/Cellar/nano/*/share/nano/*.nanorc"' >> ~/.nanorc

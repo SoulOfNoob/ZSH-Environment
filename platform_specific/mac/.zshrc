@@ -92,7 +92,7 @@ plugins=(
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 zstyle :omz:plugins:ssh-agent ssh-add-args -q
 
-zstyle :omz:plugins:ssh-agent identities id_rsa_private id_eddsa_private
+zstyle :omz:plugins:ssh-agent identities id_rsa_facelift id_ed25519_facelift id_rsa_private id_ed25519_private
 
 source $ZSH/oh-my-zsh.sh
 
@@ -104,11 +104,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='nano'
+else
+  export EDITOR='nano'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
