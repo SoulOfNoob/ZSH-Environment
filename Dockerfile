@@ -9,10 +9,10 @@ RUN apk update && \
       openssh-client \
       shadow
 
-RUN mkdir /testing
 COPY ./ /root/
 WORKDIR /root/
-CMD ["init.zsh"]
+CMD ["init.sh"]
 ENTRYPOINT ["/bin/sh"]
 
 # sudo docker build -t testing/alpine:latest . && sudo docker run -it --entrypoint sh testing/alpine:latest
+# docker build -t testing/alpine:latest . && docker run -it  testing/alpine:latest
