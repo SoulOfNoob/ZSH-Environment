@@ -31,8 +31,7 @@ cp ./platform_specific/$INSTALL_ENV/.zshrc $HOME/
 
 # Install Oh-My-ZSH
 printf "${YELLOW}Install oh-my-zsh${NC}\n"
-rm -rf /etc/oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+ZSH=$HOME/.oh-my-zsh sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 # Install autocomplete
 printf "${YELLOW}Install autocomplete${NC}\n"
