@@ -6,4 +6,7 @@ git \
 wget \
 curl \
 zsh \
+tmux \
+tree \
+htop \
 openssh-client

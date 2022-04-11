@@ -5,4 +5,6 @@ git \
 wget \
 curl \
 zsh \
+tree \
+tmux \
 openssh

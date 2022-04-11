@@ -6,5 +6,7 @@ git \
 wget \
 curl \
 zsh \
+tmux \
+tree \
 openssh-client \
 openssh-keygen
