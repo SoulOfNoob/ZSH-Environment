@@ -26,8 +26,12 @@ ssh-keygen -t ed25519 -f $HOME/.ssh/id_eddsa_private
 printf "${YELLOW}Generating RSA key${NC}\n"
 ssh-keygen -t rsa -b 4096 -f $HOME/.ssh/id_rsa_private
 
+# Copy ZSH config
+cp ./platform_specific/$INSTALL_ENV/.zshrc $HOME/
+
 # Install Oh-My-ZSH
 printf "${YELLOW}Install oh-my-zsh${NC}\n"
+rm -rf /etc/oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 # Install autocomplete
@@ -55,7 +59,6 @@ cp ./platform_specific/default/.zshrc $HOME/
 cp ./platform_specific/default/.p10k.zsh $HOME/
 
 printf "${YELLOW}Copying override files${NC}\n"
-cp ./platform_specific/$INSTALL_ENV/.zshrc $HOME/
 cp ./platform_specific/$INSTALL_ENV/.p10k.zsh $HOME/
 
 # Copy custom scripts
