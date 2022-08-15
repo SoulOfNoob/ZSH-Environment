@@ -20,11 +20,24 @@ printf "${ASCII_WELCOME}"
 
 source "etc/shell/wizard.sh"
 
+echo
+echo "Answers:"
+echo "OS: $OS"
+echo "DISTRO: $DISTRO"
+echo "ENV: $ENV"
+echo "SSH: $SSH"
+
 if [ "${OS}" == "linux" ]
 then
     source "etc/dependencies/${DISTRO}.sh"
 else
     source "etc/dependencies/${OS}.sh"
+fi
+
+if [ "${ENV}" == "remote" ]
+then
+    sudo cp ./config/remote/ssh_banner /etc/ssh_banner
+    sudo echo 'Banner /etc/ssh_banner' >> /etc/ssh/sshd_config
 fi
 
 if [ "${SSH}" == "yes" ]
@@ -33,13 +46,6 @@ then
 fi
 
 source "etc/shell/install_zsh.sh"
-
-echo
-echo "Answers:"
-echo "OS: $OS"
-echo "DISTRO: $DISTRO"
-echo "ENV: $ENV"
-echo "SSH: $SSH"
 
 # realpath "$0" | sed 's|\(.*\)/.*|\1|'
 
