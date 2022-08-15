@@ -24,7 +24,7 @@ case $os_int in
         ;;
     "3")
         docker rm arch_testing
-        docker build -t arch_testing:latest -f Dockerfile.arch .
+        docker build -t arch_testing:latest -f Dockerfile.archlinux .
         docker run --name arch_testing -it arch_testing
         ;;
     *)

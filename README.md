@@ -2,7 +2,7 @@
 
 ## Scripts
 
-- zsh install interactive script `./init.sh`
+- zsh install interactive script `./install.sh`
 - docker build interactive script `./test.sh`
   
 ## Testing Commands

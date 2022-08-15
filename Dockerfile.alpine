@@ -1,11 +1,11 @@
 FROM alpine:latest
 
-RUN apk update && \
+RUN apk update && apk upgrade && \
       apk add --no-cache \
       bash
 
 COPY ./ /root/
 WORKDIR /root/
 
-CMD ["init.sh"]
+CMD ["install.sh"]
 ENTRYPOINT ["/bin/bash"]

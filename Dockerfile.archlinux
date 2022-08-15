@@ -1,13 +1,12 @@
 FROM lopsided/archlinux
 
 RUN pacman -Syu --noconfirm && \
-pacman -S --noconfirm \
+      pacman -S --noconfirm \
+      bash \
       sudo
-
-# RUN sudo groupadd docker
 
 COPY ./ /root/
 WORKDIR /root/
 
-CMD ["init.sh"]
+CMD ["install.sh"]
 ENTRYPOINT ["/bin/bash"]
