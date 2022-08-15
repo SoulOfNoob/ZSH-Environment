@@ -10,5 +10,7 @@ tmux \
 tree \
 nano \
 shadow \
+sudo \
 openssh-client \
-openssh-keygen
+openssh-keygen \
+openssh-server

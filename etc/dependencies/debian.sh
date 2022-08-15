@@ -1,6 +1,7 @@
 #!/bin/sh
 
 sudo apt update && \
+sudo apt upgrade -y && \
 sudo apt install -y \
 git \
 wget \
@@ -9,4 +10,6 @@ zsh \
 tmux \
 tree \
 htop \
-openssh-client
+nano \
+openssh-client \
+openssh-server
