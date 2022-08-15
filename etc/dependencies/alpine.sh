@@ -8,5 +8,7 @@ curl \
 zsh \
 tmux \
 tree \
+nano \
+shadow \
 openssh-client \
 openssh-keygen

@@ -9,12 +9,24 @@ xcode-select --install
 #export HOMEBREW_BREW_GIT_REMOTE="..."  # put your Git mirror of Homebrew/brew here
 #export HOMEBREW_CORE_GIT_REMOTE="..."  # put your Git mirror of Homebrew/homebrew-core here
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zprofile
-eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Install zsh
 brew install wget zsh pyenv nvm nano openssl wget yarn dnsmasq azure-cli kubernetes-cli 
-echo 'include "/usr/local/Cellar/nano/*/share/nano/*.nanorc"' >> $HOME/.nanorc
+
+if [ "${UNAME}" == "Darwin" ]
+then
+    if [ "${UNAME_ARCH}" == "arm64" ]
+    then 
+        echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zprofile
+        echo 'include "/opt/homebrew/Cellar/nano/*/share/nano/*.nanorc"' >> $HOME/.nanorc
+    else
+        echo 'eval "$(/usr/local/bin/brew shellenv)"' >> $HOME/.zprofile
+        echo 'include "/usr/local/Cellar/nano/*/share/nano/*.nanorc"' >> $HOME/.nanorc
+    fi
+else
+    printf "${LOGPREFIX}|${SECTION_PREFIX}| ${ERROR} ${YELLOW}MacOS Version '${UNAME}' not supported ${NL}"
+    exit
+fi
 
 mkdir $HOME/.nvm
 

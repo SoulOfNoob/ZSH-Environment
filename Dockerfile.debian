@@ -1,0 +1,13 @@
+FROM debian:latest
+
+RUN apt update && \
+      apt upgrade -y && \
+      apt install -y sudo
+
+# RUN sudo groupadd docker
+
+COPY ./ /root/
+WORKDIR /root/
+
+CMD ["init.sh"]
+ENTRYPOINT ["/bin/bash"]
