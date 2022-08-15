@@ -51,6 +51,8 @@ source "etc/shell/install_zsh.sh"
 
 SECTION_PREFIX="${RED} Copy Files"
 
+# ToDo: check for file existence and overwrite target
+
 # Copy ZSH config
 printf "${LOGPREFIX}|${SECTION_PREFIX}|${YELLOW} ZSH config ${OK}${NL}"
 cp ./config/all/.zshrc $HOME/
