@@ -1,67 +1,15 @@
 # ZSH-Environment
 
-## Run Command
+## Scripts
 
-`./init.sh`
-
+- zsh install interactive script `./init.sh`
+- docker build interactive script `./test.sh`
+  
 ## Testing Commands
 
-`docker build -t alpine_testing/alpine:latest -f Dockerfile.alpine . && docker run -it alpine_testing/alpine:latest`
-`docker build -t ubuntu_testing/ubuntu:latest -f Dockerfile.ubuntu . && docker run -it ubuntu_testing/ubuntu:latest`
-`docker build -t archlinux_testing/lopsided/archlinux -f Dockerfile.archlinux . && docker run -it archlinux_testing/lopsided/archlinux`
+`docker build -t alpine_testing:latest -f Dockerfile.alpine . && docker run --name alpine_testing -it alpine_testing`
+`docker build -t debian_testing:latest -f Dockerfile.debian . && docker run --name debian_testing -it debian_testing`
+`docker build -t archlinux_testing:latest -f Dockerfile.archlinux . && docker run --name archlinux_testing -it archlinux_testing`
 
 Old: `docker build -t testing/alpine:latest ./test/alpine && docker run -it  testing/alpine:latest`
 Old: `docker build -t testing . && docker run -it testing`
-## Additional Software
-
-- Work
-	- AppStore
-		- Magnet
-		- The Unarchiver
-		- Jolt of caffene
-		- FileZilla
-		- Agenda
-		- Excel
-
-	- Download
-		- Firefox
-		- Chrome
-		- Microsoft Teams
-		- PostMan
-		- TablePlus (License)
-		- Lens
-		- VS Code
-		- iTerm
-		- Sublime Text 3
-		- Tunnelblick
-		- Docker
-		- zoom
-
-		
-- Private
-	- AppStore
-		- Mp3Tag
-		- MacTracker
-		- MQTT Explorer
-		- iStat Menus (License)
-	- Download
-		- 1Password (License)
-		- Betaflight Configurator
-		- Tor Browser
-		- Arduino
-		- Affinity Designer (License)
-		- Affinity Photo (License)
-		- Parallels Desktop (License)
-		- Signal
-		- Rambox
-		- Respberry Pi Imager
-		- VLC Player
-		- Parsec
-		- Cura (Migrate Settings)
-		- OpenSCAD
-		- Steam
-		- DaisyDisk (License)
-		- Spotify
-		- TeamViewer
-		- TripMode 3 (License)
-		- Balena Etcher
