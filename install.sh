@@ -53,6 +53,11 @@ SECTION_PREFIX="${RED} Copy Files"
 
 # ToDo: check for file existence and overwrite target
 
+# Create GitHub dir
+printf "${LOGPREFIX}|${SECTION_PREFIX}|${YELLOW} create GitHub dir ${OK}${NL}"
+cp ./config/all/GitHub $HOME/
+cp ./config/$ENV/GitHub $HOME/
+
 # Copy ZSH config
 printf "${LOGPREFIX}|${SECTION_PREFIX}|${YELLOW} ZSH config ${OK}${NL}"
 cp ./config/all/.zshrc $HOME/
@@ -65,8 +70,8 @@ cp ./config/$ENV/.p10k.zsh $HOME/
 
 # Copy custom scripts
 printf "${LOGPREFIX}|${SECTION_PREFIX}|${YELLOW} Custom Scripts ${OK}${NL}"
-cp ./config/all/custom_scripts/* ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/
-cp ./config/$ENV/custom_scripts/* ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/
+cp ./config/all/.oh-my-zsh/custom_scripts/* ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/
+cp ./config/$ENV/.oh-my-zsh/custom_scripts/* ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/
 
 SECTION_PREFIX="${RED} Finishing "
 
