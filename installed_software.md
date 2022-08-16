@@ -12,18 +12,20 @@
     - Excel
 
   - Download
-    - Firefox
     - Chrome
+    - TablePlus (License)
+    - Docker
+    - zoom
+  
+  - Homebrew installer
+    - Firefox
     - Microsoft Teams
     - PostMan
-    - TablePlus (License)
     - Lens
     - VS Code
     - iTerm
-    - Sublime Text 3
+    - Sublime Text 4
     - Tunnelblick
-    - Docker
-    - zoom
 
 - Private
   - AppStore
@@ -33,23 +35,26 @@
     - iStat Menus (License)
 
   - Download
-    - 1Password (License)
-    - Betaflight Configurator
+
     - Tor Browser
-    - Arduino
     - Affinity Designer (License)
     - Affinity Photo (License)
     - Parallels Desktop (License)
-    - Signal
-    - Rambox
     - Respberry Pi Imager
-    - VLC Player
     - Parsec
-    - Cura (Migrate Settings)
-    - OpenSCAD
-    - Steam
-    - DaisyDisk (License)
     - Spotify
     - TeamViewer
     - TripMode 3 (License)
     - Balena Etcher
+
+  - Homebrew Installer
+    - 1Password (License)
+    - Arduino
+    - Signal
+    - Rambox
+    - VLC Player
+    - Cura (Migrate Settings)
+    - OpenSCAD
+    - Steam
+    - DaisyDisk (License)
+    - Betaflight Configurator
