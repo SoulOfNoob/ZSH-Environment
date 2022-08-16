@@ -6,6 +6,26 @@ then
     OS="macos"
     ENV="local"
 
+    printf "${HORIZONTAL_LINE}"
+    printf "             Install additional software?"
+    printf "${HORIZONTAL_LINE}"
+    printf "y) Yes${NL}"
+    printf "n) No"
+    printf "${HORIZONTAL_LINE}"
+    read -r optional_sw
+
+    case $optional_sw in
+        "n")
+            OPTIONAL="no"
+            ;;
+        "y")
+            OPTIONAL="yes"
+            ;;
+        *)
+            OPTIONAL="yes"
+            ;;
+esac
+
 else
 
     if [[ "$OS_RELEASE" == *"debian"* ]]

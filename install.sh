@@ -13,6 +13,7 @@ OS='linux'      # linux/mac
 DISTRO='debian' # debian/arch/alpine
 ARCH='arm'      # arm64/arm32/amd64/aarch64
 ENV='remote'    # remote/local
+OPTIONAL='no'   # optional software
 
 source "etc/shell/vars.sh"
 
