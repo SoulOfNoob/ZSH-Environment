@@ -56,7 +56,7 @@ then
     # Install work related software
     printf "${LOGPREFIX}|${SECTION_PREFIX}| ${INFO} ${YELLOW}Install work related software '${OS_RELEASE}' ${NC}${NL}"
     brew install dnsmasq azure-cli kubernetes-cli 
-    brew install --cask microsoft-teams lens
+    brew install --cask microsoft-teams lens tableplus
 else
     git config --global user.email "jan_ryklikas@ymail.com"
     git config --global user.name "Jan Ryklikas"
