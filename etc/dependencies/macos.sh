@@ -57,6 +57,12 @@ then
     printf "${LOGPREFIX}|${SECTION_PREFIX}| ${INFO} ${YELLOW}Install work related software '${OS_RELEASE}' ${NC}${NL}"
     brew install dnsmasq azure-cli kubernetes-cli 
     brew install --cask microsoft-teams lens tableplus
+    
+    # az_aks_authentication.md
+    az login
+    az aks get-credentials -g FCLD-AKS-cluster -n fcld-aks
+    
+    # copy kubernetes.crt and kubectl_setup_unit-customdev.sh from email and execute
 else
     git config --global user.email "jan_ryklikas@ymail.com"
     git config --global user.name "Jan Ryklikas"
