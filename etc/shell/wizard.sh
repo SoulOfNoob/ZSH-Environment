@@ -40,6 +40,10 @@ else
     then
         OS="linux"
         DISTRO="arch"
+    elif [[ "$OS_RELEASE" == *"OpenWrt"* ]]
+        OS="linux"
+        DISTRO="openwrt"
+    then
     else 
         printf "${LOGPREFIX}|${SECTION_PREFIX}| ${INFO} ${YELLOW}Autodetect OS failed for '${OS_RELEASE}' ${NC}${NL}"
 
@@ -49,7 +53,8 @@ else
         printf "1) MacOS${NL}"
         printf "2) Debian${NL}"
         printf "3) Alpine${NL}"
-        printf "4) Arch"
+        printf "3) Arch${NL}"
+        printf "4) OpenWRT"
         printf "${HORIZONTAL_LINE}"
         read -r os_int
 
@@ -69,6 +74,10 @@ else
                     OS="linux"
                     DISTRO="arch"
                     ;;
+                "5")
+                    OS="linux"
+                    DISTRO="openwrt"
+                    ;;
                 *)
                     printf "${LOGPREFIX}|${SECTION_PREFIX}| ${ERROR} ${YELLOW}Not a valid OS ${NL}"
                     exit
@@ -79,7 +88,7 @@ else
     printf "${HORIZONTAL_LINE}"
     printf "                Remote or local machine?"
     printf "${HORIZONTAL_LINE}"
-    printf "1) Remote${NL}"
+    printf "1) Remote/Headless${NL}"
     printf "2) Local${NL}"
     printf "3) Work"
     printf "${HORIZONTAL_LINE}"
