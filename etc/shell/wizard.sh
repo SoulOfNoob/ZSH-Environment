@@ -41,9 +41,9 @@ else
         OS="linux"
         DISTRO="arch"
     elif [[ "$OS_RELEASE" == *"OpenWrt"* ]]
+    then
         OS="linux"
         DISTRO="openwrt"
-    then
     else 
         printf "${LOGPREFIX}|${SECTION_PREFIX}| ${INFO} ${YELLOW}Autodetect OS failed for '${OS_RELEASE}' ${NC}${NL}"
 
