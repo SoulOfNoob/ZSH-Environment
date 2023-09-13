@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #remove missing repo from file
-sed -i".bak" -e "s@.*http.*mipsel_24kc/onion.*@@g" asdf.txt
+sed -i".bak" -e "s@.*http.*mipsel_24kc/onion.*@@g" /etc/opkg/distfeeds.conf
 # add all opkg repos before update
 sed -i".bak" -e "s/#//g" /etc/opkg/distfeeds.conf
 
