@@ -37,6 +37,7 @@ fi
 
 if [ "${ENV}" == "remote" ]
 then
+    sudo cp -n /etc/ssh_banner /etc/ssh_banner.bak
     sudo cp ./config/remote/ssh_banner /etc/ssh_banner
     sudo echo 'Banner /etc/ssh_banner' >> /etc/ssh/sshd_config
 fi

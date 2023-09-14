@@ -9,6 +9,8 @@ wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20I
 printf "${LOGPREFIX}|${SECTION_PREFIX}|${YELLOW} Install oh-my-zsh ${OK}\n"
 ZSH=$HOME/.oh-my-zsh sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
+command -v zsh >/dev/null 2>&1 || { echo >&2 "I require zsh but it's not installed.  Aborting."; exit 1; }
+
 # Install autocomplete
 printf "${LOGPREFIX}|${SECTION_PREFIX}|${YELLOW} Install autocomplete ${OK}\n"
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting

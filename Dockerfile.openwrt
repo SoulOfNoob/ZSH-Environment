@@ -1,0 +1,12 @@
+FROM openwrt/rootfs:latest
+
+RUN mkdir /var/lock/
+
+RUN opkg update && \
+      opkg install bash
+
+COPY ./ /root/
+WORKDIR /root/
+
+CMD ["install.sh"]
+ENTRYPOINT ["/bin/bash"]
