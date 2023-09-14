@@ -53,8 +53,8 @@ else
         printf "1) MacOS${NL}"
         printf "2) Debian${NL}"
         printf "3) Alpine${NL}"
-        printf "3) Arch${NL}"
-        printf "4) OpenWRT"
+        printf "4) Arch${NL}"
+        printf "5) OpenWRT"
         printf "${HORIZONTAL_LINE}"
         read -r os_int
 

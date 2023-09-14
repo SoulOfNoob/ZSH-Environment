@@ -1,5 +1,7 @@
 SECTION_PREFIX="${RED} Configure ZSH "
 
+command -v zsh >/dev/null 2>&1 || { printf "${LOGPREFIX}|${SECTION_PREFIX}|${YELLOW} ZSH not installed ${ERROR}\n"; exit 1; }
+
 # Download fonts
 wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf -P ./etc/fonts
 wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf -P ./etc/fonts
@@ -8,8 +10,6 @@ wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20I
 # Install Oh-My-ZSH
 printf "${LOGPREFIX}|${SECTION_PREFIX}|${YELLOW} Install oh-my-zsh ${OK}\n"
 ZSH=$HOME/.oh-my-zsh sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-
-command -v zsh >/dev/null 2>&1 || { echo >&2 "I require zsh but it's not installed.  Aborting."; exit 1; }
 
 # Install autocomplete
 printf "${LOGPREFIX}|${SECTION_PREFIX}|${YELLOW} Install autocomplete ${OK}\n"
