@@ -40,16 +40,15 @@ if [ "${ENV}" == "remote" ]
 then
     sudo mv /etc/ssh_banner /etc/ssh_banner.bak
     sudo cp $SCRIPT_DIR/config/remote/ssh_banner /etc/ssh_banner
-    sudo sed 's/#Banner none/Banner \/etc\/ssh_banner/' /etc/ssh/sshd_config
-    #sudo echo "Banner /etc/ssh_banner" >> /etc/ssh/sshd_config
+    sudo sed -i 's/#Banner none/Banner \/etc\/ssh_banner/' /etc/ssh/sshd_config
 fi
 
 if [ "${SSH}" == "yes" ]
 then
-    source "etc/shell/ssh_setup.sh"
+    source $SCRIPT_DIR/etc/shell/ssh_setup.sh
 fi
 
-source "etc/shell/install_zsh.sh"
+source $SCRIPT_DIR/etc/shell/install_zsh.sh
 
 # realpath "$0" | sed 's|\(.*\)/.*|\1|'
 
