@@ -41,6 +41,11 @@ then
     sudo mv /etc/ssh_banner /etc/ssh_banner.bak
     sudo cp $SCRIPT_DIR/config/remote/ssh_banner /etc/ssh_banner
     sudo sed -i 's/#Banner none/Banner \/etc\/ssh_banner/' /etc/ssh/sshd_config
+    
+    if [ "${DISTRO}" == "debian" ]
+    then
+        sudo systemctl restart sshd
+    fi
 fi
 
 if [ "${SSH}" == "yes" ]
