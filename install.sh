@@ -9,6 +9,7 @@
 # 	openssh-keygen
 # ---
 
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 OS='linux'      # linux/mac
 DISTRO='debian' # debian/arch/alpine
 ARCH='arm'      # arm64/arm32/amd64/aarch64
@@ -37,9 +38,10 @@ fi
 
 if [ "${ENV}" == "remote" ]
 then
-    sudo cp -n /etc/ssh_banner /etc/ssh_banner.bak
-    sudo cp ./config/remote/ssh_banner /etc/ssh_banner
-    sudo echo 'Banner /etc/ssh_banner' >> /etc/ssh/sshd_config
+    sudo mv /etc/ssh_banner /etc/ssh_banner.bak
+    sudo cp $SCRIPT_DIR/config/remote/ssh_banner /etc/ssh_banner
+    sudo sed 's/#Banner none/Banner \/etc\/ssh_banner/' /etc/ssh/sshd_config
+    #sudo echo "Banner /etc/ssh_banner" >> /etc/ssh/sshd_config
 fi
 
 if [ "${SSH}" == "yes" ]
@@ -57,23 +59,23 @@ SECTION_PREFIX="${RED} Copy Files"
 
 # Create GitHub dir
 printf "${LOGPREFIX}|${SECTION_PREFIX}|${YELLOW} create GitHub dir ${OK}${NL}"
-cp ./config/all/GitHub $HOME/
-cp ./config/$ENV/GitHub $HOME/
+cp $SCRIPT_DIR/config/all/GitHub $HOME/
+cp $SCRIPT_DIR/config/$ENV/GitHub $HOME/
 
 # Copy ZSH config
 printf "${LOGPREFIX}|${SECTION_PREFIX}|${YELLOW} ZSH config ${OK}${NL}"
-cp ./config/all/.zshrc $HOME/
-cp ./config/$ENV/.zshrc $HOME/
+cp $SCRIPT_DIR/config/all/.zshrc $HOME/
+cp $SCRIPT_DIR/config/$ENV/.zshrc $HOME/
 
 # Copy rc files
 printf "${LOGPREFIX}|${SECTION_PREFIX}|${YELLOW} p10k config ${OK}${NL}"
-cp ./config/all/.p10k.zsh $HOME/
-cp ./config/$ENV/.p10k.zsh $HOME/
+cp $SCRIPT_DIR/config/all/.p10k.zsh $HOME/
+cp $SCRIPT_DIR/config/$ENV/.p10k.zsh $HOME/
 
 # Copy custom scripts
 printf "${LOGPREFIX}|${SECTION_PREFIX}|${YELLOW} Custom Scripts ${OK}${NL}"
-cp ./config/all/.oh-my-zsh/custom_scripts/* ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/
-cp ./config/$ENV/.oh-my-zsh/custom_scripts/* ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/
+cp $SCRIPT_DIR/config/all/.oh-my-zsh/custom_scripts/* ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/
+cp $SCRIPT_DIR/config/$ENV/.oh-my-zsh/custom_scripts/* ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/
 
 SECTION_PREFIX="${RED} Finishing "
 
