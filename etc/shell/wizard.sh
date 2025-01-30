@@ -44,6 +44,12 @@ else
     then
         OS="linux"
         DISTRO="openwrt"
+    elif [[ "$OS_RELEASE" == *"slackware"* ]]
+    then
+        OS="linux"
+        DISTRO="slackware"
+        ENV="remote"
+        SSH="no"
     else 
         printf "${LOGPREFIX}|${SECTION_PREFIX}| ${INFO} ${YELLOW}Autodetect OS failed for '${OS_RELEASE}' ${NC}${NL}"
 
@@ -85,47 +91,53 @@ else
         esac
     fi
 
-    printf "${HORIZONTAL_LINE}"
-    printf "                Remote or local machine?"
-    printf "${HORIZONTAL_LINE}"
-    printf "1) Remote/Headless${NL}"
-    printf "2) Local${NL}"
-    printf "3) Work"
-    printf "${HORIZONTAL_LINE}"
-    read -r env_int
+    if [ -z "$ENV" ]
+    then
+        printf "${HORIZONTAL_LINE}"
+        printf "                Remote or local machine?"
+        printf "${HORIZONTAL_LINE}"
+        printf "1) Remote/Headless${NL}"
+        printf "2) Local${NL}"
+        printf "3) Work"
+        printf "${HORIZONTAL_LINE}"
+        read -r env_int
 
-    case $env_int in
-            "1")
-                ENV="remote"
+        case $env_int in
+                "1")
+                    ENV="remote"
+                    ;;
+                "2")
+                    ENV="local"
+                    ;;
+                "3")
+                    ENV="work"
+                    ;;
+                *)
+                    ENV="remote"
+                    ;;
+        esac
+    fi
+fi
+
+if [ -z "$SSH" ]
+then
+    printf "${HORIZONTAL_LINE}"
+    printf "                         Setup SSH?"
+    printf "${HORIZONTAL_LINE}"
+    printf "y) Yes${NL}"
+    printf "n) No"
+    printf "${HORIZONTAL_LINE}"
+    read -r ssh_int
+
+    case $ssh_int in
+            "n")
+                SSH="no"
                 ;;
-            "2")
-                ENV="local"
-                ;;
-            "3")
-                ENV="work"
+            "y")
+                SSH="yes"
                 ;;
             *)
-                ENV="remote"
+                SSH="yes"
                 ;;
     esac
 fi
-
-printf "${HORIZONTAL_LINE}"
-printf "                         Setup SSH?"
-printf "${HORIZONTAL_LINE}"
-printf "y) Yes${NL}"
-printf "n) No"
-printf "${HORIZONTAL_LINE}"
-read -r ssh_int
-
-case $ssh_int in
-        "n")
-            SSH="no"
-            ;;
-        "y")
-            SSH="yes"
-            ;;
-        *)
-            SSH="yes"
-            ;;
-esac

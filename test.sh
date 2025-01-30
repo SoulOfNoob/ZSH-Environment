@@ -1,16 +1,22 @@
 #!/bin/bash
 
+os_int=$1
+
 source "etc/shell/vars.sh"
 
-printf "${HORIZONTAL_LINE}"
-printf "        Please Select Operating System to test"
-printf "${HORIZONTAL_LINE}"
-printf "1) Alpine${NL}"
-printf "2) Debian${NL}"
-printf "3) Arch${NL}"
-printf "4) OpenWRT"
-printf "${HORIZONTAL_LINE}"
-read -r os_int
+if [ -z "$os_int" ]
+then
+    printf "${HORIZONTAL_LINE}"
+    printf "        Please Select Operating System to test"
+    printf "${HORIZONTAL_LINE}"
+    printf "1) Alpine${NL}"
+    printf "2) Debian${NL}"
+    printf "3) Arch${NL}"
+    printf "4) OpenWRT${NL}"
+    printf "5) Slackware"
+    printf "${HORIZONTAL_LINE}"
+    read -r os_int
+fi
 
 case $os_int in
     "1")
@@ -32,6 +38,11 @@ case $os_int in
         docker rm openwrt_testing
         docker build -t openwrt_testing:latest -f Dockerfile.openwrt .
         docker run --name openwrt_testing -it openwrt_testing
+        ;;
+    "5")
+        docker rm slackware_testing
+        docker build -t slackware_testing:latest -f Dockerfile.slackware .
+        docker run --name slackware_testing -it slackware_testing
         ;;
     *)
         docker rm alpine_testing

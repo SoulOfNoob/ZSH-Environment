@@ -2,7 +2,7 @@ PROJECT_NAME='ZSH Environment Setup'
 
 UNAME="$(eval uname)"
 UNAME_ARCH="$(eval uname -m)"
-OS_RELEASE="$(eval cat /etc/*-release)"
+OS_RELEASE="$(eval cat /etc/*-release 2>/dev/null)" || OS_RELEASE="unknown"
 
 # Color codes
 RED='\033[0;31m'

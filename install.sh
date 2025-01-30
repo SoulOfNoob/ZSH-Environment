@@ -29,6 +29,8 @@ echo "DISTRO: $DISTRO"
 echo "ENV: $ENV"
 echo "SSH: $SSH"
 
+exit 0 # remove this line to continue
+
 if [ "${OS}" == "linux" ]
 then
     source "etc/dependencies/${DISTRO}.sh"

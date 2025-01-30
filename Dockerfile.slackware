@@ -1,0 +1,12 @@
+FROM aclemons/slackware:latest
+
+RUN mkdir -p /var/lock/
+
+# RUN opkg update && \
+#       opkg install bash
+
+COPY ./ /root/
+WORKDIR /root/
+
+CMD ["install.sh"]
+ENTRYPOINT ["/bin/bash"]
