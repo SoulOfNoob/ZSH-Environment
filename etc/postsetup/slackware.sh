@@ -22,3 +22,6 @@ touch /boot/config/extra/.zsh_history
 
 # Symlink .zshrc and history files
 cp -sf /boot/config/extra/.zsh_history /root/.zsh_history
+
+/usr/local/emhttp/webGui/scripts/notify -s "Finished Setup" -e "ZSH Auto Setup" -i "normal"
+echo "Info: Finished Setup"

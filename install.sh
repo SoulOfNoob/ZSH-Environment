@@ -123,4 +123,4 @@ chsh -s "$(which zsh)"
 
 echo -e "\n\n$MAGENTA !! Please launch $BLUE zsh $MAGENTA to complete the setup !! $NC\n\n"
 
-$SHELL
+exit 0

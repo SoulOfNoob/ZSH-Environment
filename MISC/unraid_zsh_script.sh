@@ -21,13 +21,12 @@ unraid_info Checking if Repo exists
 if [ ! -d "/boot/config/extra/ZSH-Environment" ]
 then
     unraid_info Cloning Repo
-    mkdir -p /boot/config/extra && git clone https://github.com/SoulOfNoob/ZSH-Environment.git /boot/config/extra/ZSH-Environment || unraid_error Failed to clone repository && exit 1
+    mkdir -p /boot/config/extra && git clone https://github.com/SoulOfNoob/ZSH-Environment.git /boot/config/extra/ZSH-Environment || (unraid_error Failed to clone repository && exit 1)
 fi
 
 unraid_info Changing Directory
-cd /boot/config/extra/ZSH-Environment || unraid_error Failed to change directory && exit 1
-
+cd /boot/config/extra/ZSH-Environment || (unraid_error Failed to change directory && exit 1)
 unraid_info Starting Setup
-/bin/bash ./install.sh || unraid_error Failed to install ZSH Environment && exit 1
+/bin/bash ./install.sh || (unraid_error Failed to install ZSH Environment && exit 1)
 unraid_info Finished Setup
 echo "You can close this window now"
