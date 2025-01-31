@@ -4,6 +4,8 @@
 
 color_echo "Setting up UnRAID Stuff"
 
+sed -i "s/# typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION='⭐'/typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION='UnRAID'/" /root/.p10k.zsh
+
 # check if ` /root/GitHub/ZSH-Environment/MISC/unraid_zsh_script.sh` exists
 if [ -f "./MISC/unraid_zsh_script.sh" ]
 then
@@ -16,7 +18,7 @@ mkdir -p /root/.cache/zsh/
 mkdir -p /boot/config/extra/
 
 # Make sure history file exists
-touch /boot/config/extra/history
+touch /boot/config/extra/.zsh_history
 
 # Symlink .zshrc and history files
-cp -sf /boot/config/extra/history /root/.cache/zsh/history
+cp -sf /boot/config/extra/.zsh_history /root/.zsh_history
