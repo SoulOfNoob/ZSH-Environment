@@ -47,6 +47,7 @@ else
         ENV="remote"
         SSH="no"
         PERSONAL="true"
+        HOME="/root"
     fi
 fi
 

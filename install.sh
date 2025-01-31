@@ -102,6 +102,11 @@ echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} Custom Scripts ${OK}
 cp "$SCRIPT_DIR"/config/all/.oh-my-zsh/custom_scripts/* "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/"
 cp "$SCRIPT_DIR"/config/$ENV/.oh-my-zsh/custom_scripts/* "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/" 2>/dev/null
 
+echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} Checking Home Structure ${OK}${MAGENTA}"
+echo "HOME: $HOME"
+ls -al "$HOME"
+echo -e "${NC}"
+
 #check if postsetup script exists in etc/postsetup/${DISTRO}.sh
 if [ -f "etc/postsetup/${DISTRO}.sh" ]
 then
