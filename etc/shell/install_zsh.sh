@@ -4,11 +4,26 @@ SECTION_PREFIX="${RED} Configure ZSH "
 
 command -v zsh >/dev/null 2>&1 || { echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} ZSH not installed ${ERROR}"; exit 1; }
 
+# Check for file existence and prompt for overwrite
+download_font() {
+  local url=$1
+  local target_dir=$2
+  local filename
+  filename=$(basename "$url")
+  local target_file="$target_dir/$filename"
+
+  if [ -f "$target_file" ]; then
+	echo -e "File $target_file already exists."
+  else
+	wget -q "$url" -P "$target_dir"
+  fi
+}
+
 # Download fonts
 echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} Download Fonts ${OK}"
-wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf -P ./etc/fonts
-wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf -P ./etc/fonts
-wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf -P ./etc/fonts
+download_font "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf" "./etc/fonts"
+download_font "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf" "./etc/fonts"
+download_font "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf" "./etc/fonts"
 
 # Install Oh-My-ZSH
 echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} Install oh-my-zsh ${OK}"
