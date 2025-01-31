@@ -46,7 +46,7 @@ fi
 
 SECTION_PREFIX="${RED} SSH Setup "
 
-if [ "${ENV}" == "remote" ] && [ "${PERSONAL}" == "yes" ]
+if [ "${ENV}" == "remote" ] && [ "${PERSONAL}" == "true" ]
 then
     echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} SSH Banner Setup ${OK}"
     mv "$HOME/ssh_banner" "$HOME/ssh_banner.bak" 2>/dev/null || echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} No existing banner file found ${OK}"
