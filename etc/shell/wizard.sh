@@ -6,11 +6,11 @@ SECTION_PREFIX="${RED} Wizard "
 OS=""
 ENV=""
 SSH=""
+PERSONAL="true"
 
 if [ "${UNAME}" == "Darwins" ]
 then
     OS="macos"
-    ENV="local"
 
     echo -e "${HORIZONTAL_LINE}\c"
     echo -e "             Install additional software?\c"
@@ -82,9 +82,10 @@ then
     echo -e "${HORIZONTAL_LINE}\c"
     echo -e "                Remote or local machine?\c"
     echo -e "${HORIZONTAL_LINE}\c"
-    echo -e "1) Remote/Headless"
-    echo -e "2) Local"
-    echo -e "3) Work\c"
+    echo -e "1) Remote/Headless (Personal)"
+    echo -e "2) Local (Personal)"
+    echo -e "3) Work (Personal)"
+    echo -e "4) Remote/Headless (Shared)\c"
     echo -e "${HORIZONTAL_LINE}"
     read -r env_int
 
@@ -92,6 +93,7 @@ then
         "1") ENV="remote" ;;
         "2") ENV="local" ;;
         "3") ENV="work" ;;
+        "4") ENV="remote"; PERSONAL="false" ;;
         *) ENV="remote" ;;
     esac
 fi

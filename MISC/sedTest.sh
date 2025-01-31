@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #mv asdf.txt.bak asdf.txt
 #sed -i".bak" -e "s@.*http.*mipsel_24kc/onion.*@@g" asdf.txt

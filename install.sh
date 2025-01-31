@@ -32,7 +32,7 @@ echo "DISTRO: $DISTRO"
 echo "ENV: $ENV"
 echo "SSH: $SSH"
 
-SECTION_PREFIX="${RED} Dependency Setup"
+SECTION_PREFIX="${RED} Dependency Setup "
 echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} Installing Dependencies ${OK}"
 
 if [ "${OS}" == "linux" ]
@@ -46,7 +46,7 @@ fi
 
 SECTION_PREFIX="${RED} SSH Setup "
 
-if [ "${ENV}" == "remote" ]
+if [ "${ENV}" == "remote" ] && [ "${PERSONAL}" == "yes" ]
 then
     echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} SSH Banner Setup ${OK}"
     mv "$HOME/ssh_banner" "$HOME/ssh_banner.bak" 2>/dev/null || echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} No existing banner file found ${OK}"
@@ -79,9 +79,10 @@ SECTION_PREFIX="${RED} Copy Files "
 # ToDo: check for file existence and overwrite target
 
 # Create GitHub dir
-# echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} create GitHub dir ${OK}"
-# cp $SCRIPT_DIR/config/all/GitHub $HOME/
-# cp $SCRIPT_DIR/config/$ENV/GitHub $HOME/
+echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} Create / Copy GitHub dir(s) ${OK}"
+mkdir -p "$HOME/GitHub/" 2>/dev/null
+cp -rn "$SCRIPT_DIR/config/all/GitHub/*" "$HOME/GitHub/" 2>/dev/null
+cp -rn "$SCRIPT_DIR/config/$ENV/GitHub/*" "$HOME/GitHub/" 2>/dev/null
 
 # Copy ZSH config
 echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} ZSH config ${OK}"
@@ -97,6 +98,15 @@ cp "$SCRIPT_DIR/config/$ENV/.p10k.zsh" "$HOME/"
 echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} Custom Scripts ${OK}"
 cp "$SCRIPT_DIR"/config/all/.oh-my-zsh/custom_scripts/* "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/"
 cp "$SCRIPT_DIR"/config/$ENV/.oh-my-zsh/custom_scripts/* "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/" 2>/dev/null
+
+#check if postsetup script exists in etc/postsetup/${DISTRO}.sh
+if [ -f "etc/postsetup/${DISTRO}.sh" ]
+then
+    SECTION_PREFIX="${RED} Post Setup "
+    color_echo "Run Post-Setup"
+    # shellcheck source=./etc/postsetup/slackware.sh
+    source "etc/postsetup/${DISTRO}.sh"
+fi
 
 SECTION_PREFIX="${RED} Finishing "
 

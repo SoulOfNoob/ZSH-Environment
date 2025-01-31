@@ -1,7 +1,7 @@
 #!/bin/bash
 # shellcheck disable=SC2034 
 
-PROJECT_NAME='ZSH Environment Setup'
+PROJECT_NAME='ZSH auto setup'
 
 UNAME="$(eval uname)"
 UNAME_ARCH="$(eval uname -m)"
@@ -10,9 +10,12 @@ OS_RELEASE="$(eval cat /etc/*-release 2>/dev/null)" || OS_RELEASE="unknown"
 # Color codes
 RED='\033[0;31m'
 GREEN='\033[0;32m'
-ORANGE='\033[0;33m'
-CYAN='\033[0;36m'
 YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+MAGENTA='\033[0;35m'
+CYAN='\033[0;36m'
+WHITE='\033[0;37m'
+
 NC='\033[0m'
 NL='\n'
 UNDERLINE='\033[4m\033[1m'
@@ -29,7 +32,7 @@ HORIZONTAL_LINE='
 '
 SEP="$NC|"
 
-ASCII_WELCOME='
+ASCII_WELCOME="$MAGENTA"'
  _       __     __                                     
 | |     / /__  / /________  ____ ___  ___              
 | | /| / / _ \/ / ___/ __ \/ __ `__ \/ _ \             
@@ -40,10 +43,10 @@ ASCII_WELCOME='
  ___/ / /_/ / /_/ / / /_/ / __/ /|  / /_/ / /_/ / /_/ /
 /____/\____/\__,_/_/\____/_/ /_/ |_/\____/\____/_.___/ 
                                                        
-'
+'"$NC"
 
 function color_echo() {
-  echo "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} $* ${OK}"
+  echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} $* ${OK}"
 }
 
 function evaluate {
