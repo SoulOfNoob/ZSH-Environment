@@ -58,6 +58,9 @@ then
     if [ "${DISTRO}" == "debian" ]
     then
         sudo systemctl restart sshd
+    elif [ "${DISTRO}" == "slackware" ]
+    then
+        /etc/rc.d/rc.sshd restart
     fi
 fi
 
