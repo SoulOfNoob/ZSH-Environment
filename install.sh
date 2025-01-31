@@ -51,8 +51,8 @@ then
     echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} SSH Banner Setup ${OK}"
     mv "$HOME/ssh_banner" "$HOME/ssh_banner.bak" 2>/dev/null || echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} No existing banner file found ${OK}"
     cp "$SCRIPT_DIR/config/remote/ssh_banner" "$HOME/ssh_banner"
-    sed -i 's,#Banner none,Banner '"$HOME"'\/ssh_banner,' /etc/ssh/sshd_config || sudo !!
-    sed -i 's,Banner \/etc\/ssh_banner,Banner '"$HOME"'\/ssh_banner,' /etc/ssh/sshd_config || sudo !!
+    sed -i 's,#Banner none,Banner '"$HOME"'\/ssh_banner,' /etc/ssh/sshd_config || sudo sed -i 's,#Banner none,Banner '"$HOME"'\/ssh_banner,' /etc/ssh/sshd_config
+    sed -i 's,Banner \/etc\/ssh_banner,Banner '"$HOME"'\/ssh_banner,' /etc/ssh/sshd_config || sudo sed -i 's,Banner \/etc\/ssh_banner,Banner '"$HOME"'\/ssh_banner,' /etc/ssh/sshd_config
     grep Banner "/etc/ssh/sshd_config"
     
     if [ "${DISTRO}" == "debian" ]
