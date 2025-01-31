@@ -6,9 +6,9 @@
 # update-ca-certificates
 git config --global http.sslCAinfo /etc/ssl/certs/ca-certificates.crt
 export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
-export LANG=en_GB.UTF-8
-export LC_ALL=en_GB.UTF-8
-export LANGUAGE=en_GB.UTF-8
+export LANG=en_US.utf8
+export LC_ALL=en_US.utf8
+export LANGUAGE=en_US.utf8
 export KEYMAP="de"
 # echo 'export LANG=de_DE.UTF-8' >>! ~/.zshenv
 
