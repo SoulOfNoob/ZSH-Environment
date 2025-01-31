@@ -92,7 +92,7 @@ plugins=(
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 zstyle :omz:plugins:ssh-agent ssh-add-args -q
 
-zstyle :omz:plugins:ssh-agent identities id_rsa_facelift id_ed25519_facelift id_rsa_private id_ed25519_private
+zstyle :omz:plugins:ssh-agent identities id_rsa_tqgg id_eddsa_tqgg id_rsa_tqgg_private id_ed25519_tqgg_private
 
 source $ZSH/oh-my-zsh.sh
 
@@ -156,3 +156,36 @@ fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+######################
+# TQG Customizations #
+######################
+
+#Foodist-Local-RC START
+alias dlogin="aws ecr get-login-password --region  eu-central-1  | docker login --username AWS --password-stdin 597031446072.dkr.ecr.eu-central-1.amazonaws.com"
+#Foodist-Local-RC END
+
+# packagist credentials for composer
+export COMPOSER_AUTH='{"http-basic": {"repo.packagist.com": {"username": "janryklikas-tqgg", "password": "aeefc62fbc3afdaa26a7f1c34fe746da7ab5700f90610ad0f1eb09231cee"}}}'
+
+# Created by `pipx` on 2024-02-29 16:47:19
+export PATH="$PATH:/Users/janryklikas/.local/bin"
+
+# AWS stuff
+export AWS_SDK_LOAD_CONFIG=1
+export AWS_REGION="eu-central-1"
+
+awr() {
+    export AWS_REGION="$1"
+}
+awp() {
+    export AWS_PROFILE="$1"
+}
+
+_awp_completer() {
+    # seems the "correct" way is shell and version dependent and this works,
+    # so 🤷🏼‍
+    # shellcheck disable=SC2207
+    COMPREPLY=($(compgen -W "$(sed -nr 's/\[profile (.*)\]/\1/p' ~/.aws/config | tr '\n' ' ')" "${COMP_WORDS[1]}"))
+}
+complete -F _awp_completer awp
