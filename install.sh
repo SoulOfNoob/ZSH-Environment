@@ -117,9 +117,12 @@ SECTION_PREFIX="${RED} Finishing "
 echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} Make ZSH default shell ${OK}"
 chsh -s "$(which zsh)"
 
-# Restart ZSH
-# echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} Restart ZSH ${OK}"
-# exec zsh
+if [ "${DISTRO}" != "slackware" ]
+then
+    # Restart ZSH
+    echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} Restart ZSH ${OK}"
+    exec zsh
+fi
 
 echo -e "\n\n$MAGENTA !! Please launch $BLUE zsh $MAGENTA to complete the setup !! $NC\n\n"
 
