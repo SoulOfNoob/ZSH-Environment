@@ -46,6 +46,7 @@ else
         DISTRO="slackware"
         ENV="remote"
         SSH="no"
+        PERSONAL="true"
     fi
 fi
 
