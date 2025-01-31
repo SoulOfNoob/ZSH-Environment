@@ -1,12 +1,11 @@
-FROM aclemons/slackware:latest
+# FROM --platform=linux/amd64 aclemons/slackware:15.0
+FROM aclemons/slackware:15.0
 
 RUN mkdir -p /var/lock/
-
-# RUN opkg update && \
-#       opkg install bash
 
 COPY ./ /root/
 WORKDIR /root/
 
+RUN ["docker/slackware_init.sh"]
 CMD ["install.sh"]
 ENTRYPOINT ["/bin/bash"]

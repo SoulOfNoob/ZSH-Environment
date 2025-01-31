@@ -1,3 +1,6 @@
+#!/bin/bash
+# shellcheck disable=SC2034 
+
 PROJECT_NAME='ZSH Environment Setup'
 
 UNAME="$(eval uname)"
@@ -14,16 +17,17 @@ NC='\033[0m'
 NL='\n'
 UNDERLINE='\033[4m\033[1m'
 
-OK=${GREEN}[OK]${NC}
-ERROR=${RED}[ERROR]${NC}
-INFO=${GREEN}[INFO]${NC}
-WARNING=${ORANGE}[WARNING]${NC}
+OK=$GREEN"[OK]"$NC
+ERROR=$RED"[ERROR]"$NC
+INFO=$GREEN"[INFO]"$NC
+WARNING=$ORANGE"[WARNING]"$NC
 
-LOGPREFIX="${CYAN} ${PROJECT_NAME} "
+LOGPREFIX="${CYAN}${PROJECT_NAME} "
 
 HORIZONTAL_LINE='
 =======================================================
 '
+SEP="$NC|"
 
 ASCII_WELCOME='
  _       __     __                                     
@@ -37,3 +41,14 @@ ASCII_WELCOME='
 /____/\____/\__,_/_/\____/_/ /_/ |_/\____/\____/_.___/ 
                                                        
 '
+
+function evaluate {
+  OUTPUT=$($1)
+  if [ $? -eq 0 ]; then
+    echo "$OK"
+    # echo "$OUTPUT"
+  else
+    echo "$ERROR"
+    # echo "$OUTPUT"
+  fi
+}

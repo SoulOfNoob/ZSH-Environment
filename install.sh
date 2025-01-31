@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# shellcheck disable=SC2034 
+
 # requirements
 # 	git
 # 	zsh
@@ -18,7 +20,7 @@ OPTIONAL='no'   # optional software
 
 source "etc/shell/vars.sh"
 
-printf "${ASCII_WELCOME}"
+echo -e "${ASCII_WELCOME}"
 
 source "etc/shell/wizard.sh"
 
@@ -29,20 +31,26 @@ echo "DISTRO: $DISTRO"
 echo "ENV: $ENV"
 echo "SSH: $SSH"
 
-exit 0 # remove this line to continue
+SECTION_PREFIX="${RED} Dependency Setup"
+echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} Installing Dependencies ${OK}"
 
 if [ "${OS}" == "linux" ]
 then
+    # shellcheck source=./etc/dependencies/alpine.sh
     source "etc/dependencies/${DISTRO}.sh"
 else
+    # shellcheck source=./etc/dependencies/macos.sh
     source "etc/dependencies/${OS}.sh"
 fi
 
+SECTION_PREFIX="${RED} SSH Setup "
+echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} SSH Banner Setup ${OK}"
+
 if [ "${ENV}" == "remote" ]
 then
-    sudo mv /etc/ssh_banner /etc/ssh_banner.bak
-    sudo cp $SCRIPT_DIR/config/remote/ssh_banner /etc/ssh_banner
-    sudo sed -i 's/#Banner none/Banner \/etc\/ssh_banner/' /etc/ssh/sshd_config
+    mv "$HOME/ssh_banner" "$HOME/ssh_banner.bak" 2>/dev/null || echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} No existing banner file found ${OK}"
+    cp "$SCRIPT_DIR/config/remote/ssh_banner" "$HOME/ssh_banner"
+    sed -i 's/#Banner none/Banner \/etc\/ssh_banner/' /etc/ssh/sshd_config || sudo !!
     
     if [ "${DISTRO}" == "debian" ]
     then
@@ -52,43 +60,47 @@ fi
 
 if [ "${SSH}" == "yes" ]
 then
-    source $SCRIPT_DIR/etc/shell/ssh_setup.sh
+    # shellcheck source=./etc/shell/ssh_setup.sh
+    source "$SCRIPT_DIR/etc/shell/ssh_setup.sh"
+else
+    mkdir -p ~/.ssh
 fi
 
-source $SCRIPT_DIR/etc/shell/install_zsh.sh
+# shellcheck source=./etc/shell/install_zsh.sh
+source "$SCRIPT_DIR/etc/shell/install_zsh.sh"
 
 # realpath "$0" | sed 's|\(.*\)/.*|\1|'
 
-SECTION_PREFIX="${RED} Copy Files"
+SECTION_PREFIX="${RED} Copy Files "
 
 # ToDo: check for file existence and overwrite target
 
 # Create GitHub dir
-printf "${LOGPREFIX}|${SECTION_PREFIX}|${YELLOW} create GitHub dir ${OK}${NL}"
-cp $SCRIPT_DIR/config/all/GitHub $HOME/
-cp $SCRIPT_DIR/config/$ENV/GitHub $HOME/
+# echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} create GitHub dir ${OK}"
+# cp $SCRIPT_DIR/config/all/GitHub $HOME/
+# cp $SCRIPT_DIR/config/$ENV/GitHub $HOME/
 
 # Copy ZSH config
-printf "${LOGPREFIX}|${SECTION_PREFIX}|${YELLOW} ZSH config ${OK}${NL}"
-cp $SCRIPT_DIR/config/all/.zshrc $HOME/
-cp $SCRIPT_DIR/config/$ENV/.zshrc $HOME/
+echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} ZSH config ${OK}"
+cp "$SCRIPT_DIR/config/all/.zshrc" "$HOME/"
+cp "$SCRIPT_DIR/config/$ENV/.zshrc" "$HOME/" 2>/dev/null
 
 # Copy rc files
-printf "${LOGPREFIX}|${SECTION_PREFIX}|${YELLOW} p10k config ${OK}${NL}"
-cp $SCRIPT_DIR/config/all/.p10k.zsh $HOME/
-cp $SCRIPT_DIR/config/$ENV/.p10k.zsh $HOME/
+echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} p10k config ${OK}"
+cp "$SCRIPT_DIR/config/all/.p10k.zsh" "$HOME/"
+cp "$SCRIPT_DIR/config/$ENV/.p10k.zsh" "$HOME/"
 
 # Copy custom scripts
-printf "${LOGPREFIX}|${SECTION_PREFIX}|${YELLOW} Custom Scripts ${OK}${NL}"
-cp $SCRIPT_DIR/config/all/.oh-my-zsh/custom_scripts/* ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/
-cp $SCRIPT_DIR/config/$ENV/.oh-my-zsh/custom_scripts/* ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/
+echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} Custom Scripts ${OK}"
+cp "$SCRIPT_DIR"/config/all/.oh-my-zsh/custom_scripts/* "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/"
+cp "$SCRIPT_DIR"/config/$ENV/.oh-my-zsh/custom_scripts/* "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/" 2>/dev/null
 
 SECTION_PREFIX="${RED} Finishing "
 
 # Make ZSH default
-printf "${LOGPREFIX}|${SECTION_PREFIX}|${YELLOW} Make ZSH default shell ${OK}${NL}"
-chsh -s $(which zsh)
+echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} Make ZSH default shell ${OK}"
+chsh -s "$(which zsh)"
 
 # Restart ZSH
-printf "${LOGPREFIX}|${SECTION_PREFIX}|${YELLOW} Restart ZSH ${OK}${NL}"
+echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} Restart ZSH ${OK}"
 exec zsh
