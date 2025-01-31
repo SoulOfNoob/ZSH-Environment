@@ -3,9 +3,29 @@ FROM aclemons/slackware:15.0
 
 RUN mkdir -p /var/lock/
 
-COPY ./ /root/
+# COPY ./ /root/
 WORKDIR /root/
 
-RUN ["docker/slackware_init.sh"]
+# RUN ["docker/slackware_init.sh"]
+RUN yes | slackpkg update gpg && \
+    yes | slackpkg update && \
+    yes | slackpkg install \
+        glibc \
+        nghttp2 \
+        brotli \
+        cyrus-sasl \
+        zsh \
+        nano \
+        curl \
+        wget \
+        git \
+        ca-certificates \
+        openssh \
+        openssl \
+        openssh-client \
+        openssh-keygen \
+        && \
+    update-ca-certificates
+
 CMD ["install.sh"]
 ENTRYPOINT ["/bin/bash"]

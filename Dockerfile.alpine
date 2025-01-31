@@ -4,7 +4,7 @@ RUN apk update && apk upgrade && \
       apk add --no-cache \
       bash
 
-COPY ./ /root/
+# COPY ./ /root/
 WORKDIR /root/
 
 CMD ["install.sh"]

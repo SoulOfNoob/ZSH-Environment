@@ -17,8 +17,9 @@ DISTRO='debian' # debian/arch/alpine
 ARCH='arm'      # arm64/arm32/amd64/aarch64
 ENV='remote'    # remote/local
 OPTIONAL='no'   # optional software
+LOGPREFIX="${CYAN}${PROJECT_NAME} "
 
-source "etc/shell/vars.sh"
+source "etc/shell/common.sh"
 
 echo -e "${ASCII_WELCOME}"
 
@@ -44,13 +45,15 @@ else
 fi
 
 SECTION_PREFIX="${RED} SSH Setup "
-echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} SSH Banner Setup ${OK}"
 
 if [ "${ENV}" == "remote" ]
 then
+    echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} SSH Banner Setup ${OK}"
     mv "$HOME/ssh_banner" "$HOME/ssh_banner.bak" 2>/dev/null || echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} No existing banner file found ${OK}"
     cp "$SCRIPT_DIR/config/remote/ssh_banner" "$HOME/ssh_banner"
-    sed -i 's/#Banner none/Banner \/etc\/ssh_banner/' /etc/ssh/sshd_config || sudo !!
+    sed -i 's,#Banner none,Banner '"$HOME"'\/ssh_banner,' /etc/ssh/sshd_config || sudo !!
+    sed -i 's,Banner \/etc\/ssh_banner,Banner '"$HOME"'\/ssh_banner,' /etc/ssh/sshd_config || sudo !!
+    grep Banner "/etc/ssh/sshd_config"
     
     if [ "${DISTRO}" == "debian" ]
     then

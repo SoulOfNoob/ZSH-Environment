@@ -2,23 +2,15 @@
 
 os_int=$1
 rebuild=$2
+LOGPREFIX="${CYAN}Testing "
 
 if [ -z "$rebuild" ]
 then
     rebuild=true
 fi
 
-source "etc/shell/vars.sh"
-
-function rebuild_container() {
-    docker stop "$1" 2>/dev/null
-    docker rm "$1" 2>/dev/null
-    if [ "$rebuild" = true ]
-    then
-        docker build -t "$1":latest -f Dockerfile.slackware .
-    fi
-    docker run --name "$1" -it "$1"
-}
+# shellcheck source=./etc/shell/common.sh
+source "etc/shell/common.sh"
 
 if [ -z "$os_int" ]
 then
@@ -35,10 +27,10 @@ then
 fi
 
 case $os_int in
-    1) rebuild_container alpine_testing ;;
-    2) rebuild_container debian_testing ;;
-    3) rebuild_container arch_testing ;;
-    4) rebuild_container openwrt_testing ;;
-    5) rebuild_container slackware_testing ;;
-    *) rebuild_container alpine_testing ;;
+    1) run_test_container alpine "$rebuild" ;;
+    2) run_test_container debian "$rebuild" ;;
+    3) run_test_container arch "$rebuild" ;;
+    4) run_test_container openwrt "$rebuild" ;;
+    5) run_test_container slackware "$rebuild" ;;
+    *) run_test_container alpine "$rebuild" ;;
 esac

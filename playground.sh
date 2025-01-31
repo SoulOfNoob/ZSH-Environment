@@ -1,9 +1,9 @@
 #!/bin/bash
 
-source "etc/shell/vars.sh"
+source "etc/shell/common.sh"
 
-echo -en "${LOGPREFIX}|${SECTION_PREFIX}|${YELLOW} TEST OK \c"
-evaluate 'pwd'
+echo -e "TEST Success | $RED\c"
+evaluate pwd
 
-echo -en "${LOGPREFIX}|${SECTION_PREFIX}|${YELLOW} TEST Fail \c"
-evaluate 'eval cat /etc/*-release' 
+echo -e "Test Failure | $RED\c"
+evaluate pwnd

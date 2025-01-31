@@ -42,13 +42,43 @@ ASCII_WELCOME='
                                                        
 '
 
+function color_echo() {
+  echo "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} $* ${OK}"
+}
+
 function evaluate {
-  OUTPUT=$($1)
+  OUTPUT=$("$@" 2>&1)
   if [ $? -eq 0 ]; then
-    echo "$OK"
-    # echo "$OUTPUT"
+    echo -e "$NC|$GREEN OK"
+    echo -e "$OUTPUT"
   else
-    echo "$ERROR"
-    # echo "$OUTPUT"
+    echo -e "$NC|$RED ERROR"
+    echo -e "$RED""$OUTPUT""$NC"
   fi
 }
+
+function run_test_container() {
+  name=$1
+  rebuild=$2
+  SECTION_PREFIX="$RED $name-testing "
+  color_echo "Stopping container"
+  docker stop "$name-testing" >/dev/null 2>&1
+  docker rm "$name-testing" >/dev/null 2>&1
+  color_echo "Starting container"
+  if [ "$rebuild" = true ]
+  then
+    color_echo "Building container"
+      docker build -t "$name-testing":latest -f "Dockerfile.$name" .
+  fi
+  docker run \
+    --volume ./etc:/root/etc:ro  \
+    --volume ./config:/root/config:ro  \
+    --volume ./install.sh:/root/install.sh:ro  \
+    --name "$name-testing"  \
+    -it "$name-testing"
+  color_echo "Removing container"
+  docker stop "$name-testing" >/dev/null 2>&1
+  docker rm "$name-testing" >/dev/null 2>&1
+  color_echo "Removed container"
+}
+
