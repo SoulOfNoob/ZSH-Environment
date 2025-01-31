@@ -118,5 +118,9 @@ echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} Make ZSH default she
 chsh -s "$(which zsh)"
 
 # Restart ZSH
-echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} Restart ZSH ${OK}"
-exec zsh
+# echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} Restart ZSH ${OK}"
+# exec zsh
+
+echo -e "\n\n$MAGENTA !! Please launch $BLUE zsh $MAGENTA to complete the setup !! $NC\n\n"
+
+$SHELL
