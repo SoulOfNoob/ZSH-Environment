@@ -4,7 +4,7 @@
 target := nothing
 
 .PHONY: install
-install: ## Run the alpine testing container
+install: ## Run the installer locally
 	/bin/bash ./install.sh
 
 ###########

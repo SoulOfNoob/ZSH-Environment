@@ -9,11 +9,8 @@ This is my personal zsh environment setup that I use across multiple machines.
 - Linux
 - Docker containers
 
-## Scripts
+## Commands
 
-- zsh install interactive script `make install`
-- docker build interactive script `make test-alpine-build`
-  
-## Testing Commands
-
-run `make help to list all commands`
+- `make help` list all commands
+- `make install` run interactive script locally
+- `make test-alpine-build` to build and test in alpine container
