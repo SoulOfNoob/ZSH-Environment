@@ -72,16 +72,21 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
-  node
-  npm
-  docker
-  github
-  vscode
-  yarn
+  ssh
   ssh-agent
+  command-not-found
+  colorize
   zsh-syntax-highlighting
   zsh-autosuggestions
+  safe-paste
+  git
+  gitfast
+  git-auto-fetch
+  github
+  gh
+  docker
+  dotenv
+  rsync
 )
 
 zstyle :omz:plugins:ssh-agent agent-forwarding on
