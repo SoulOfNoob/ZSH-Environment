@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 apk update && \
 apk add --no-cache \

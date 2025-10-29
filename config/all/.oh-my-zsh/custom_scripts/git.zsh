@@ -1,0 +1,6 @@
+alias gcb='git checkout -b'
+alias gco='git checkout'
+alias gm='git merge'
+alias gf='git fetch'
+alias gff='git fetch --tags --force'
+alias gso='gff; gfa; gco main; git pull'

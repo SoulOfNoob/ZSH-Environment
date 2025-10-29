@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #remove missing repo from file
 sed -i".bak" -e "s@.*http.*mipsel_24kc/onion.*@@g" /etc/opkg/distfeeds.conf

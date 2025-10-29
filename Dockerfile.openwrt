@@ -5,7 +5,7 @@ RUN mkdir /var/lock/
 RUN opkg update && \
       opkg install bash
 
-COPY ./ /root/
+# COPY ./ /root/
 WORKDIR /root/
 
 CMD ["install.sh"]

@@ -6,13 +6,12 @@
 # update-ca-certificates
 git config --global http.sslCAinfo /etc/ssl/certs/ca-certificates.crt
 export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
-# export LANG=de_DE.UTF-8
-# export LC_ALL=de_DE.UTF-8
-# export LANGUAGE=de_DE.UTF-8
-# export KEYMAP="de"
+export LANG=en_US.utf8
+export LC_ALL=en_US.utf8
+export LANGUAGE=en_US.utf8
+export KEYMAP="de"
+# echo 'export LANG=de_DE.UTF-8' >>! ~/.zshenv
 
-which zsh >/dev/null 2>&1 || { echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} zsh not installed ${ERROR}"; exit 1; }
-which curl >/dev/null 2>&1 || { echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} curl not installed ${ERROR}"; exit 1; }
-which wget >/dev/null 2>&1 || { echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} wget not installed ${ERROR}"; exit 1; }
-which git >/dev/null 2>&1 || { echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} git not installed ${ERROR}"; exit 1; }
-which openssl >/dev/null 2>&1 || { echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} openssl not installed ${ERROR}"; exit 1; }
+for cmd in zsh curl wget git openssl; do
+    which $cmd >/dev/null 2>&1 || { echo -e "${LOGPREFIX}${SEP}${SECTION_PREFIX}${SEP}${YELLOW} $cmd not installed ${ERROR}"; exit 1; }
+done

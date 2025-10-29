@@ -72,27 +72,38 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
-  node
-  npm
-  git-flow
-  docker
-  github
-  heroku
-  vscode
-  yarn
+  ssh
   ssh-agent
+  command-not-found
+  colorize
   zsh-syntax-highlighting
   zsh-autosuggestions
+  safe-paste
+  git
+  gitfast
+  git-auto-fetch
+  github
+  gh
+  docker
+  dotenv
+  rsync
+  composer
+  node
+  npm
+  sublime
   macos
+  vscode
   brew
   iterm2
+  1password
+  aws
+  terraform
 )
 
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 zstyle :omz:plugins:ssh-agent ssh-add-args -q
 
-zstyle :omz:plugins:ssh-agent identities id_rsa_facelift id_ed25519_facelift id_rsa_private id_ed25519_private
+# zstyle :omz:plugins:ssh-agent identities id_rsa_tqgg id_eddsa_tqgg id_rsa_tqgg_private id_ed25519_tqgg_private
 
 source $ZSH/oh-my-zsh.sh
 
@@ -125,23 +136,25 @@ fi
 # For brew, at least
 export PATH=/usr/local/bin:$PATH
 
-# NVM Stuff
-export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+# # NVM Stuff
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+# [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
-# place this after nvm initialization!
-autoload -U add-zsh-hook
-load-nvmrc() {
-  if [[ -f .nvmrc && -r .nvmrc ]]; then
-    nvm use
-  elif [[ $(nvm version) != $(nvm version default)  ]]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+# # place this after nvm initialization!
+# autoload -U add-zsh-hook
+# load-nvmrc() {
+#   if [[ -f .nvmrc && -r .nvmrc ]]; then
+#     nvm use
+#   elif [[ $(nvm version) != $(nvm version default)  ]]; then
+#     echo "Reverting to nvm default version"
+#     nvm use default
+#   fi
+# }
+# add-zsh-hook chpwd load-nvmrc
+# load-nvmrc
+
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 prompt_context() {
   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
@@ -152,7 +165,8 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Created by `pipx` on 2024-02-29 16:47:19
+export PATH="$PATH:/Users/janryklikas/.local/bin"
