@@ -24,28 +24,28 @@ test-alpine: ## Run the alpine testing container
 test-alpine-build: ## Build and run the alpine testing container
 	/bin/bash ./test.sh 1 true
 
-.PHONY: test-arch
-test-arch: ## Run the arch testing container
-	/bin/bash ./test.sh 2 false
-
-.PHONY: test-arch-build
-test-arch-build: ## Build and run the arch testing container
-	/bin/bash ./test.sh 2 true
-
 .PHONY: test-debian
 test-debian: ## Run the debian testing container
-	/bin/bash ./test.sh 3 false
+	/bin/bash ./test.sh 2 false
 
 .PHONY: test-debian-build
 test-debian-build: ## Build and run the debian testing container
+	/bin/bash ./test.sh 2 true
+
+.PHONY: test-arch
+test-arch: ## Run the arch testing container
+	/bin/bash ./test.sh 3 false
+
+.PHONY: test-arch-build
+test-arch-build: ## Build and run the arch testing container
 	/bin/bash ./test.sh 3 true
 
-.PHONY: test-wrt
-test-wrt: ## Run the wrt testing container
+.PHONY: test-openwrt
+test-openwrt: ## Run the openwrt testing container
 	/bin/bash ./test.sh 4 false
 
-.PHONY: test-wrt-build
-test-wrt-build: ## Build and run the wrt testing container
+.PHONY: test-openwrt-build
+test-openwrt-build: ## Build and run the openwrt testing container
 	/bin/bash ./test.sh 4 true
 
 .PHONY: test-slackware

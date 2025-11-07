@@ -71,7 +71,13 @@ function run_test_container() {
   if [ "$rebuild" = true ]
   then
     color_echo "Building container"
-      docker build -t "$name-testing":latest -f "Dockerfile.$name" .
+    docker build -t "$name-testing":latest -f "Dockerfile.$name" . || {
+      color_echo "Failed to build $name-testing container for armh64 architecture, trying amd64..."
+      docker build --platform linux/amd64 -t "$name-testing":latest -f "Dockerfile.$name" . || {
+        color_echo "Failed to build $name-testing container for amd64 architecture"
+        exit 1
+      }
+    }
   fi
   docker run \
     --volume ./etc:/root/etc:ro  \

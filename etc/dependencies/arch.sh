@@ -8,6 +8,8 @@ curl \
 zsh \
 tree \
 tmux \
+bat \
+fzf \
 openssh \
 which \
 util-linux

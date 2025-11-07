@@ -11,6 +11,8 @@ tree \
 nano \
 shadow \
 sudo \
+bat \
+fzf \
 openssh-client \
 openssh-keygen \
 openssh-server

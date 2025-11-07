@@ -16,7 +16,7 @@ printf "${LOGPREFIX}|${SECTION_PREFIX}| ${INFO} ${YELLOW}Install Brew '${OS_RELE
 
 # Install zsh and other dependencies
 printf "${LOGPREFIX}|${SECTION_PREFIX}| ${INFO} ${YELLOW}Install Brew basic packages '${OS_RELEASE}' ${NC}${NL}"
-brew install wget zsh pyenv nvm nano openssl wget yarn
+brew install wget zsh pyenv nvm nano openssl wget yarn bat fzf
 
 # Install important software
 printf "${LOGPREFIX}|${SECTION_PREFIX}| ${INFO} ${YELLOW}Install important 3rd party software '${OS_RELEASE}' ${NC}${NL}"
@@ -26,7 +26,7 @@ if [ "${OPTIONAL}" == "yes" ]
 then
     # Install optional software
     printf "${LOGPREFIX}|${SECTION_PREFIX}| ${INFO} ${YELLOW}Install optional 3rd party software '${OS_RELEASE}' ${NC}${NL}"
-    brew install --cask arduino signal rambox openscad ultimaker-cura steam daisydisk
+    brew install --cask signal rambox openscad steam daisydisk
 fi
 
 printf "${LOGPREFIX}|${SECTION_PREFIX}| ${INFO} ${YELLOW}Config stuff '${OS_RELEASE}' ${NC}${NL}"

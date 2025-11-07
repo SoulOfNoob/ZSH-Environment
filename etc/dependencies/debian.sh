@@ -10,5 +10,7 @@ tmux \
 tree \
 htop \
 nano \
+bat \
+fzf \
 openssh-client \
 openssh-server
