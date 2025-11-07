@@ -16,17 +16,17 @@ printf "${LOGPREFIX}|${SECTION_PREFIX}| ${INFO} ${YELLOW}Install Brew '${OS_RELE
 
 # Install zsh and other dependencies
 printf "${LOGPREFIX}|${SECTION_PREFIX}| ${INFO} ${YELLOW}Install Brew basic packages '${OS_RELEASE}' ${NC}${NL}"
-brew install wget zsh pyenv nvm nano openssl wget yarn bat fzf
+brew install wget zsh nano git bat fzf tmux tree openssl pyenv nvm yarn ffmpeg
 
 # Install important software
 printf "${LOGPREFIX}|${SECTION_PREFIX}| ${INFO} ${YELLOW}Install important 3rd party software '${OS_RELEASE}' ${NC}${NL}"
-brew install --cask iterm2 sublime-text firefox vlc tunnelblick visual-studio-code 1password postman
+brew install --cask iterm2 sublime-text firefox vlc tunnelblick visual-studio-code 1password postman inkscape openscad signal wailbrew
 
 if [ "${OPTIONAL}" == "yes" ]
 then
     # Install optional software
     printf "${LOGPREFIX}|${SECTION_PREFIX}| ${INFO} ${YELLOW}Install optional 3rd party software '${OS_RELEASE}' ${NC}${NL}"
-    brew install --cask signal rambox openscad steam daisydisk
+    brew install --cask  rambox steam daisydisk
 fi
 
 printf "${LOGPREFIX}|${SECTION_PREFIX}| ${INFO} ${YELLOW}Config stuff '${OS_RELEASE}' ${NC}${NL}"
